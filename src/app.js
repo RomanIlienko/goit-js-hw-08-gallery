@@ -71,7 +71,7 @@ const overlay = document.querySelector('.lightbox__overlay')
 const imgWrapper = document.querySelector('.lightbox__content');
 const img = document.querySelector('.lightbox__image');
 const closeButton = document.querySelector('.lightbox__button');
-
+console.dir(img)
 const galleryMarkup = makeGalleryMarkup(galleryItems)
 
 galleryList.insertAdjacentHTML('beforeend', galleryMarkup)
@@ -83,24 +83,53 @@ function makeGalleryMarkup(gallery) {
     .map(({preview, original, description}) => {
       return `
       <li class="gallery__item">
-  <a class="gallery__link"
-    href="${original}">
-    <img class="gallery__image"
-      src="${preview}"
-      data-source="${original}"
-      alt="${description}" />
-  </a>
-</li>`
+        <a class="gallery__link"
+          href="${original}">
+          <img class="gallery__image"
+            src="${preview}"
+            data-source="${original}"
+           alt="${description}" />
+        </a>
+      </li>`
     })
     .join('')
 }
 
-function onButtonCloseClick(event) {
-  console.log(event.target);
-}
-
 function onGalleryContainerClick(event) {
-  console.log(event.target);
+  event.preventDefault();
+  if (event.target.nodeName !== 'IMG') {
+    return
+  }
+  
+  img.src = event.target.dataset.source;
+  img.alt = event.target.alt;
+  modalContainer.classList.add('is-open')
+  
+  overlay.addEventListener('click', closeModalByClick)
+  window.addEventListener('keydown', closeModalByEscape)
+  closeButton.addEventListener('click', onButtonCloseClick)
 }
 
 
+function onButtonCloseClick() {
+  modalContainer.classList.remove('is-open')
+  overlay.removeEventListener('click', closeModalByClick)
+  window.removeEventListener('keydown', closeModalByEscape)
+  closeButton.removeEventListener('click', onButtonCloseClick)
+  img.src = '';
+  img.alt = '';
+
+}
+
+function closeModalByEscape(event) {
+    if (event.code === 'Escape') {
+      onButtonCloseClick(event)
+    }
+  
+}
+
+function closeModalByClick(event) {
+  if (event.currentTarget === event.target) {
+    onButtonCloseClick(event)
+  }
+}
