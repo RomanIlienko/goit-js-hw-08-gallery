@@ -71,7 +71,6 @@ const overlay = document.querySelector('.lightbox__overlay')
 const imgWrapper = document.querySelector('.lightbox__content');
 const img = document.querySelector('.lightbox__image');
 const closeButton = document.querySelector('.lightbox__button');
-console.dir(img)
 const galleryMarkup = makeGalleryMarkup(galleryItems)
 
 galleryList.insertAdjacentHTML('beforeend', galleryMarkup)
