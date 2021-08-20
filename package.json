@@ -1,0 +1,24 @@
+{
+  "name": "js36module8",
+  "version": "1.0.0",
+  "description": "**Читать на других языках: [Русский](README.md).**",
+  "main": "index.js",
+  "dependencies": {
+    "parcel-bundler": "^1.12.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomanIlienko/goit-js-hw-08-gallery.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RomanIlienko/goit-js-hw-08-gallery/issues"
+  },
+  "homepage": "https://github.com/RomanIlienko/goit-js-hw-08-gallery#readme"
+}
